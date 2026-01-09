@@ -299,6 +299,35 @@ defaults write com.apple.dock wvous-br-corner -int 0
 # Don't show recently used applications in the Dock
 defaults write com.Apple.Dock show-recents -bool false
 
+# Configure Dock apps in specific order: Finder, Brave, Cursor, Spotify
+# Using dockutil (installed via homebrew module)
+if command -v dockutil &> /dev/null; then
+    # Remove all apps except Finder (Finder cannot be removed and is always first)
+    dockutil --remove all --no-restart 2>/dev/null || true
+    
+    # Add apps in order: Finder (always first), then Brave, Cursor, Spotify
+    # Brave Browser
+    if [[ -d "/Applications/Brave Browser.app" ]]; then
+        dockutil --add "/Applications/Brave Browser.app" --no-restart 2>/dev/null || true
+    elif [[ -d "$HOME/Applications/Brave Browser.app" ]]; then
+        dockutil --add "$HOME/Applications/Brave Browser.app" --no-restart 2>/dev/null || true
+    fi
+    
+    # Cursor
+    if [[ -d "/Applications/Cursor.app" ]]; then
+        dockutil --add "/Applications/Cursor.app" --no-restart 2>/dev/null || true
+    elif [[ -d "$HOME/Applications/Cursor.app" ]]; then
+        dockutil --add "$HOME/Applications/Cursor.app" --no-restart 2>/dev/null || true
+    fi
+    
+    # Spotify
+    if [[ -d "/Applications/Spotify.app" ]]; then
+        dockutil --add "/Applications/Spotify.app" --no-restart 2>/dev/null || true
+    elif [[ -d "$HOME/Applications/Spotify.app" ]]; then
+        dockutil --add "$HOME/Applications/Spotify.app" --no-restart 2>/dev/null || true
+    fi
+fi
+
 ###############################################################################
 # Terminal                                                                    #
 ###############################################################################

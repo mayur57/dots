@@ -3,7 +3,20 @@
 Essential files and preferences aggregated to make setting up a Mac as easy as running one script.
 
 ## Usage
-Download the source as a ZIP, unpack and run `cd <your-dir> | sh setup.sh` in your terminal
+
+### Setup
+Run the setup script to install all modules sequentially:
+```bash
+cd <your-dir>
+./setup.sh
+```
+
+The script will:
+- Run all modules sequentially in the optimal order
+- Display clean, minimal output with progress indicators
+- Log detailed errors to `setup_error.log` if anything fails
+- Automatically configure everything with sensible defaults
+
 
 ## Compatibility
 
@@ -34,3 +47,21 @@ Sets default branch to main and configures VS Code as the default Git editor.
 ### Install fonts
 Copies .otf and .ttf font files from a local directory (fonts) to the system's font directory.
 Provides instructions to install additional VS Code extensions manually.
+
+## Setup Modules
+
+The setup script (`setup.sh`) runs modules sequentially in the following order:
+
+1. **defaults** - macOS defaults configuration (must be first, may require Finder reload)
+2. **system** - System architecture configuration
+3. **homebrew** - Homebrew installation and package management
+4. **shell** - Shell configuration (Oh My Zsh, .zshrc, aliases)
+5. **languages** - Programming languages (Node.js, Python, Go, Java)
+6. **git** - Git configuration
+7. **agents** - AI coding tools (Claude Code, Gemini CLI)
+8. **applications** - Download applications (Rectangle, iTerm2, etc.)
+9. **vscode** - VS Code extensions installation
+10. **fonts** - Font installation
+11. **scripts** - Custom scripts building and installation
+
+Each module can also be run independently by executing the script in the `modules/` directory.

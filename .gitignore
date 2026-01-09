@@ -1,5 +1,6 @@
 # Compiled Python files
 *.pyc
+__pycache__/
 
 # Folder view configuration files
 .DS_Store
@@ -12,3 +13,28 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# Setup and error logs
+setup_error.log
+*.log
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.AppleDouble
+.LSOverride
+Icon
