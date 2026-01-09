@@ -1,5 +1,5 @@
 COMPUTER_NAME="apollo"
-LANGUAGES=(en nl)
+LANGUAGES=(en)
 LOCALE="en_IN@currency=INR"
 MEASUREMENT_UNITS="Centimeters"
 SCREENSHOTS_FOLDER="${HOME}/Screenshots"
