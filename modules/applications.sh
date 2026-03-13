@@ -12,27 +12,28 @@ download_applications() {
     logg "${COLOR_GREEN}" "Downloading and setting up applications..."
     
     SYSTEM_ARCH=$(get_system_arch)
-    mkdir -p ~/Desktop/Applications
+    mkdir -p "$HOME/Desktop/Applications"
     
     postman_url=$([[ "${SYSTEM_ARCH}" == "arm64" ]] && echo "https://dl.pstmn.io/download/latest/osx_arm64" || echo "https://dl.pstmn.io/download/latest/osx_64")
     notion_url=$([[ "${SYSTEM_ARCH}" == "arm64" ]] && echo "https://www.notion.so/desktop/apple-silicon/download" || echo "https://www.notion.so/desktop/mac/download")
     vscode_url=$([[ "${SYSTEM_ARCH}" == "arm64" ]] && echo "https://code.visualstudio.com/sha/download?build=stable&os=darwin-arm64" || echo "https://code.visualstudio.com/sha/download?build=stable&os=darwin")
     
-    declare -A APPLICATIONS_URLS=(
-        ["Rectangle"]="https://github.com/rxhanson/Rectangle/releases/download/v0.61/Rectangle0.61.dmg"
-        ["iTerm2"]="https://iterm2.com/downloads/stable/latest"
-        ["Postman"]="${postman_url}"
-        ["Notion"]="${notion_url}"
-        ["Visual Studio Code"]="${vscode_url}"
-        ["Spotify"]="https://download.scdn.co/SpotifyInstaller.zip"
-        ["Rocket"]="https://macrelease.matthewpalmer.net/Rocket.dmg"
+    # Use a simple list instead of associative arrays for compatibility with
+    # older Bash versions on macOS (bash 3.2).
+    APPLICATIONS=(
+        "Rectangle|https://github.com/rxhanson/Rectangle/releases/download/v0.61/Rectangle0.61.dmg"
+        "iTerm2|https://iterm2.com/downloads/stable/latest"
+        "Postman|${postman_url}"
+        "Notion|${notion_url}"
+        "Visual Studio Code|${vscode_url}"
+        "Spotify|https://download.scdn.co/SpotifyInstaller.zip"
+        "Rocket|https://macrelease.matthewpalmer.net/Rocket.dmg"
     )
     
-    apps_to_download=("${!APPLICATIONS_URLS[@]}")
-    
-    for app in "${apps_to_download[@]}"; do
-        url="${APPLICATIONS_URLS[$app]:-}"
-        [[ -z "$url" ]] && continue
+    for entry in "${APPLICATIONS[@]}"; do
+        app="${entry%%|*}"
+        url="${entry#*|}"
+        [[ -z "${url}" ]] && continue
         
         # Determine file extension based on URL
         if [[ "$url" == *.dmg ]]; then

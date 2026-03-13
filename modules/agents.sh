@@ -115,22 +115,56 @@ install_gemini_cli() {
     # Create symlink or add to PATH
     mkdir -p "${LOCAL_BIN}"
     
-    # Check for gemini executable
+    # Check for gemini executable - try multiple locations based on package.json bin
     GEMINI_BIN=""
-    if [[ -f "${GEMINI_CLI_DIR}/bin/gemini" ]]; then
-        GEMINI_BIN="${GEMINI_CLI_DIR}/bin/gemini"
-    elif [[ -f "${GEMINI_CLI_DIR}/gemini" ]]; then
-        GEMINI_BIN="${GEMINI_CLI_DIR}/gemini"
-    elif command -v gemini &>/dev/null; then
-        logg "${COLOR_GREEN}" "✓ Gemini CLI is already available in PATH"
-        GEMINI_BIN=""
+    
+    # Check package.json for bin location
+    if [[ -f "${GEMINI_CLI_DIR}/package.json" ]]; then
+        # Try to get bin path from package.json (usually "bundle/gemini.js")
+        BIN_PATH=$(grep -A 2 '"bin"' "${GEMINI_CLI_DIR}/package.json" | grep -o '"[^"]*"' | head -1 | tr -d '"')
+        if [[ -n "${BIN_PATH}" ]] && [[ -f "${GEMINI_CLI_DIR}/${BIN_PATH}" ]]; then
+            GEMINI_BIN="${GEMINI_CLI_DIR}/${BIN_PATH}"
+        fi
     fi
     
-    if [[ -n "${GEMINI_BIN}" ]]; then
-        logg "${COLOR_GREEN}" "Creating symlink for Gemini CLI..."
-        if execute_command "ln -sf '${GEMINI_BIN}' '${LOCAL_BIN}/gemini'" "Create Gemini CLI symlink"; then
-            logg "${COLOR_GREEN}" "✓ Gemini CLI symlink created successfully"
+    # Try common locations if not found via package.json
+    if [[ -z "${GEMINI_BIN}" ]]; then
+        if [[ -f "${GEMINI_CLI_DIR}/bundle/gemini.js" ]]; then
+            GEMINI_BIN="${GEMINI_CLI_DIR}/bundle/gemini.js"
+        elif [[ -f "${GEMINI_CLI_DIR}/bin/gemini" ]]; then
+            GEMINI_BIN="${GEMINI_CLI_DIR}/bin/gemini"
+        elif [[ -f "${GEMINI_CLI_DIR}/dist/bin/gemini" ]]; then
+            GEMINI_BIN="${GEMINI_CLI_DIR}/dist/bin/gemini"
+        elif [[ -f "${GEMINI_CLI_DIR}/gemini" ]]; then
+            GEMINI_BIN="${GEMINI_CLI_DIR}/gemini"
+        elif [[ -f "${GEMINI_CLI_DIR}/node_modules/.bin/gemini" ]]; then
+            GEMINI_BIN="${GEMINI_CLI_DIR}/node_modules/.bin/gemini"
+        elif command -v gemini &>/dev/null; then
+            logg "${COLOR_GREEN}" "✓ Gemini CLI is already available in PATH"
+            GEMINI_BIN=""
         fi
+    fi
+    
+    # Create wrapper script if we found a node.js file
+    if [[ -n "${GEMINI_BIN}" ]] && [[ -f "${GEMINI_BIN}" ]]; then
+        if [[ "${GEMINI_BIN}" == *.js ]]; then
+            # It's a Node.js script, create a wrapper
+            logg "${COLOR_GREEN}" "Creating wrapper script for Gemini CLI..."
+            cat > "${LOCAL_BIN}/gemini" << GEMINI_WRAPPER
+#!/usr/bin/env bash
+cd "${GEMINI_CLI_DIR}" && node "${GEMINI_BIN}" "\$@"
+GEMINI_WRAPPER
+            chmod +x "${LOCAL_BIN}/gemini"
+            logg "${COLOR_GREEN}" "✓ Gemini CLI wrapper created successfully"
+        else
+            # It's an executable, create symlink
+            logg "${COLOR_GREEN}" "Creating symlink for Gemini CLI..."
+            if execute_command "ln -sf '${GEMINI_BIN}' '${LOCAL_BIN}/gemini'" "Create Gemini CLI symlink"; then
+                logg "${COLOR_GREEN}" "✓ Gemini CLI symlink created successfully"
+            fi
+        fi
+    else
+        logg "${COLOR_YELLOW}" "⚠ Could not find Gemini CLI executable. You may need to build it manually."
     fi
     
     # Add to PATH if not already there (handled by scripts module, but ensure it's there)

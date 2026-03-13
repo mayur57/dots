@@ -11,7 +11,10 @@ export ERROR_LOG
 install_oh_my_zsh() {
     logg "${COLOR_GREEN}" "Installing Oh My Zsh..."
     if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-        if execute_command "sh -c '\$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)'" "Oh My Zsh installation"; then
+        # Use official Oh My Zsh installer from the current repository and avoid
+        # launching a new shell or changing the default shell during automated setup.
+        local install_cmd="RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+        if execute_command "${install_cmd}" "Oh My Zsh installation"; then
             logg "${COLOR_GREEN}" "✓ Oh My Zsh installed successfully"
         else
             logg "${COLOR_RED}" "✗ Failed to install Oh My Zsh"
