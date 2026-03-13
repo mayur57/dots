@@ -1,0 +1,138 @@
+==> Auto-updating Homebrew...
+Adjust how often this is run with `$HOMEBREW_AUTO_UPDATE_SECS` or disable with
+`$HOMEBREW_NO_AUTO_UPDATE=1`. Hide these hints with `$HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+Downloading https://nodejs.org/dist/v24.12.0/node-v24.12.0-darwin-arm64.tar.xz...
+##O#-  #                                                                                                                       ##O=-#   #                                                                                                                     #=O#- #    #                                                                                                                                                                                                                                              0.5%#                                                                                                                          1.0%##                                                                                                                         2.0%####                                                                                                                       3.6%#########                                                                                                                  7.5%############                                                                                                              10.2%###################                                                                                                       16.0%##########################                                                                                                22.2%################################                                                                                          27.4%######################################                                                                                    31.8%##########################################                                                                                35.1%#############################################                                                                             37.9%##################################################                                                                        41.9%#######################################################                                                                   46.5%############################################################                                                              50.8%#################################################################                                                         54.3%#####################################################################                                                     57.7%#######################################################################                                                   59.6%#########################################################################                                                 61.6%##############################################################################                                            65.4%####################################################################################                                      70.0%##########################################################################################                                75.1%################################################################################################                          80.6%####################################################################################################                      83.4%###########################################################################################################               89.7%#################################################################################################################         94.9%#####################################################################################################################     97.8%#######################################################################################################################   99.7%######################################################################################################################## 100.0%
+Computing checksum with sha256sum
+Checksums matched!
+setup.sh: line 106: Rectangle: unbound variable
+setup.sh: line 106: Rectangle: unbound variable
+setup.sh: line 106: Rectangle: unbound variable
+setup.sh: line 106: Rectangle: unbound variable
+setup.sh: line 106: Rectangle: unbound variable
+setup.sh: line 106: Visual Studio Code: syntax error in expression (error token is "Studio Code")
+Extension 'jolaleye.horizon-theme-vscode' not found.
+Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp
+Failed Installing Extensions: jolaleye.horizon-theme-vscode
+==========================================
+Command failed: sh -c '$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)'
+Description: Oh My Zsh installation
+Exit code: 127
+Timestamp: Sat Mar 14 01:27:12 IST 2026
+------------------------------------------
+STDOUT:
+------------------------------------------
+STDERR:
+sh: #!/bin/sh: No such file or directory
+==========================================
+
+/Users/mayur/Projects/dots/modules/applications.sh: line 21: Visual Studio Code: syntax error in expression (error token is "Studio Code")
+==========================================
+Command failed: cd '/Users/mayur/Projects/dots/modules/../vscode' && bash extensions.sh
+Description: VS Code extensions installation
+Exit code: 127
+Timestamp: Sat Mar 14 01:27:39 IST 2026
+------------------------------------------
+STDOUT:
+------------------------------------------
+STDERR:
+extensions.sh: line 1: code: command not found
+extensions.sh: line 2: code: command not found
+extensions.sh: line 3: code: command not found
+extensions.sh: line 4: code: command not found
+extensions.sh: line 5: code: command not found
+extensions.sh: line 6: code: command not found
+extensions.sh: line 7: code: command not found
+extensions.sh: line 8: code: command not found
+extensions.sh: line 9: code: command not found
+extensions.sh: line 10: code: command not found
+extensions.sh: line 11: code: command not found
+extensions.sh: line 12: code: command not found
+extensions.sh: line 13: code: command not found
+extensions.sh: line 14: code: command not found
+extensions.sh: line 15: code: command not found
+extensions.sh: line 16: code: command not found
+extensions.sh: line 17: code: command not found
+extensions.sh: line 18: code: command not found
+extensions.sh: line 19: code: command not found
+extensions.sh: line 20: code: command not found
+extensions.sh: line 21: code: command not found
+extensions.sh: line 22: code: command not found
+extensions.sh: line 23: code: command not found
+extensions.sh: line 24: code: command not found
+extensions.sh: line 25: code: command not found
+extensions.sh: line 26: code: command not found
+extensions.sh: line 27: code: command not found
+extensions.sh: line 28: code: command not found
+extensions.sh: line 29: code: command not found
+extensions.sh: line 30: code: command not found
+extensions.sh: line 31: code: command not found
+extensions.sh: line 32: code: command not found
+extensions.sh: line 33: code: command not found
+extensions.sh: line 34: code: command not found
+extensions.sh: line 35: code: command not found
+extensions.sh: line 36: code: command not found
+extensions.sh: line 37: code: command not found
+extensions.sh: line 38: code: command not found
+extensions.sh: line 39: code: command not found
+extensions.sh: line 40: code: command not found
+extensions.sh: line 41: code: command not found
+extensions.sh: line 42: code: command not found
+extensions.sh: line 43: code: command not found
+extensions.sh: line 44: code: command not found
+extensions.sh: line 45: code: command not found
+extensions.sh: line 46: code: command not found
+extensions.sh: line 47: code: command not found
+extensions.sh: line 48: code: command not found
+extensions.sh: line 49: code: command not found
+extensions.sh: line 50: code: command not found
+extensions.sh: line 51: code: command not found
+extensions.sh: line 52: code: command not found
+extensions.sh: line 53: code: command not found
+extensions.sh: line 54: code: command not found
+extensions.sh: line 55: code: command not found
+extensions.sh: line 56: code: command not found
+extensions.sh: line 57: code: command not found
+extensions.sh: line 58: code: command not found
+extensions.sh: line 59: code: command not found
+extensions.sh: line 60: code: command not found
+extensions.sh: line 61: code: command not found
+==========================================
+
+/Users/mayur/Projects/dots/modules/applications.sh: line 21: Visual Studio Code: syntax error in expression (error token is "Studio Code")
+==========================================
+Command failed: curl -L --max-time 300 --connect-timeout 30 --fail --location-trusted --silent --show-error 'https://www.notion.so/desktop/apple-silicon/download' -o '/Users/mayur/Desktop/Applications/Notion'
+Description: Download Notion
+Exit code: 56
+Timestamp: Sat Mar 14 01:30:24 IST 2026
+------------------------------------------
+STDOUT:
+------------------------------------------
+STDERR:
+curl: (56) The requested URL returned error: 404
+==========================================
+
+==========================================
+Command failed: curl -L --max-time 300 --connect-timeout 30 --fail --location-trusted --silent --show-error 'https://code.visualstudio.com/sha/download?build=stable&os=darwin-arm64' -o '/Users/mayur/Desktop/Applications/Visual Studio Code'
+Description: Download Visual Studio Code
+Exit code: 56
+Timestamp: Sat Mar 14 01:30:24 IST 2026
+------------------------------------------
+STDOUT:
+------------------------------------------
+STDERR:
+curl: (56) The requested URL returned error: 404
+==========================================
+
+==========================================
+Command failed: curl -L --max-time 300 --connect-timeout 30 --fail --location-trusted --silent --show-error 'https://macrelease.matthewpalmer.net/Rocket.dmg' -o '/Users/mayur/Desktop/Applications/Rocket.dmg'
+Description: Download Rocket
+Exit code: 56
+Timestamp: Sat Mar 14 01:30:26 IST 2026
+------------------------------------------
+STDOUT:
+------------------------------------------
+STDERR:
+curl: (56) The requested URL returned error: 403
+==========================================
+

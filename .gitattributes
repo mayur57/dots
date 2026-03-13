@@ -1,0 +1,19 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Shell scripts
+*.sh text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+
+# Git config
+.gitconfig text eol=lf
+
+# Font files (binary)
+*.otf binary
+*.ttf binary
+
+# Go files
+*.go text eol=lf

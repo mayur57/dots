@@ -1,0 +1,9 @@
+- macos default settings
+- util scripts [append (files and text), time, network, wifipassword]
+- git config [default branch, editor, etc]
+- brewfile [packages, casks, fonts, etc]
+- cask file
+- dock.sh
+- https://github.com/webpro/dotfiles/blob/main/macos/defaults.sh, https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+- # Raise limit for open files and processes -> ulimit -S -n 8192
+- aliases [https://github.com/mathiasbynens/dotfiles/blob/main/.aliases]
